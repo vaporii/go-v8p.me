@@ -4,12 +4,16 @@ import "os"
 
 // global configuration. contains values used throughout the program.
 type Config struct {
-	// path to the SQLite database file.
+	// path to the SQLite database file. defaults to ./dev.db.
 	SQLitePath string
-	// current environment. 'dev' or 'prod'.
+	// current environment. 'dev' or 'prod'. defaults to dev.
 	Environment string
 	// how detailed the logs will be. 'DEBUG', 'INFO', 'WARN', or 'ERROR'.
+	// defaults to DEBUG.
 	LogLevel string
+	// the address the server will listen on. to listen on 0.0.0.0:3000,
+	// you can use the shorthand ':3000'. defaults to ':3000'.
+	ServerAddress string
 }
 
 var configuration *Config
@@ -19,9 +23,10 @@ var configuration *Config
 func LoadConfig() *Config {
 	if configuration == nil {
 		configuration = &Config{
-			SQLitePath:  loadEnv("V8P_SQLITE_PATH", "./dev.db"),
-			Environment: loadEnv("V8P_ENVIRONMENT", "dev"),
-			LogLevel:    loadEnv("V8P_LOG_LEVEL", "DEBUG"),
+			SQLitePath:    loadEnv("V8P_SQLITE_PATH", "./dev.db"),
+			Environment:   loadEnv("V8P_ENVIRONMENT", "dev"),
+			LogLevel:      loadEnv("V8P_LOG_LEVEL", "DEBUG"),
+			ServerAddress: loadEnv("V8P_SERVER_ADDRESS", ":3000"),
 		}
 	}
 
