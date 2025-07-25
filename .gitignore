@@ -17,8 +17,8 @@ coverage.*
 *.coverprofile
 profile.cov
 
-# Database file
-*.db
+# Data
+data/
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
