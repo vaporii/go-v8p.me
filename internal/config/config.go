@@ -8,6 +8,8 @@ type Config struct {
 	SQLitePath string
 	// current environment. 'dev' or 'prod'.
 	Environment string
+	// how detailed the logs will be. 'DEBUG', 'INFO', 'WARN', or 'ERROR'.
+	LogLevel string
 }
 
 var configuration *Config
@@ -19,6 +21,7 @@ func LoadConfig() *Config {
 		configuration = &Config{
 			SQLitePath:  loadEnv("V8P_SQLITE_PATH", "./dev.db"),
 			Environment: loadEnv("V8P_ENVIRONMENT", "dev"),
+			LogLevel:    loadEnv("V8P_LOG_LEVEL", "DEBUG"),
 		}
 	}
 
