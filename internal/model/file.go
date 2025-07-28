@@ -38,8 +38,6 @@ type File struct {
 	ServerPath string `json:"-"`
 	// alias of the file.
 	Alias string `json:"alias"`
-	// domain name the file is hosted on.
-	Domain string `json:"domain"`
 	// date that the file will be deleted from the server and DB.
 	// if the file does not expire, nil.
 	Expires *time.Time `json:"expires,omitempty"`
