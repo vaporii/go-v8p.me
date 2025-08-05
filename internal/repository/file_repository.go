@@ -11,7 +11,7 @@ import (
 )
 
 type FileRepository interface {
-	CreateFile(alias string, file dto.CreateFileDB) (*model.File, error)
+	CreateFile(file dto.CreateFileDB) (*model.File, error)
 }
 
 type fileRepository struct {
@@ -24,7 +24,7 @@ func NewFileRepository(db *sql.DB) FileRepository {
 	}
 }
 
-func (r *fileRepository) CreateFile(alias string, fileDto dto.CreateFileDB) (*model.File, error) {
+func (r *fileRepository) CreateFile(fileDto dto.CreateFileDB) (*model.File, error) {
 	file := model.File{}
 	var encrypted uint8 = 0
 	if fileDto.Encrypted {
@@ -80,7 +80,7 @@ func (r *fileRepository) CreateFile(alias string, fileDto dto.CreateFileDB) (*mo
 
 	if err != nil {
 		if errors.Is(err, sqlite3.ErrConstraint) {
-			return nil, &apperror.ConflictError{Entity: "File", CollisionField: "alias", FieldValue: alias}
+			return nil, &apperror.ConflictError{Entity: "File", CollisionField: "alias", FieldValue: fileDto.Alias}
 		}
 		return nil, err
 	}

@@ -1,6 +1,10 @@
 package dto
 
-import "time"
+import (
+	"time"
+
+	"github.com/vaporii/go-v8p.me/internal/model"
+)
 
 // struct representing the data that will be sent from the service to the repository.
 type CreateFileDB struct {
@@ -21,7 +25,7 @@ type CreateFileDB struct {
 	// if the file does not expire, nil.
 	Expires *time.Time `json:"expires,omitempty"`
 	// how the file will be shown to the client. video, image, text, audio, or markdown.
-	DisplayAs string `json:"display_as"`
+	DisplayAs model.DisplayAs `json:"display_as"`
 	// if a text file is recognized as a programming language, this is the highlighting.js
 	// language to be used for syntax highlighting. nil if DisplayAs is not Text.
 	// if the text is not recognized as a programming language, "text".

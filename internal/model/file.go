@@ -24,7 +24,7 @@ const (
 // struct representing metadata on a file.
 type File struct {
 	// ID representing the file in DB.
-	ID string `json:"id"`
+	ID int64 `json:"id"`
 	// original name of the file including the file extension (if exists).
 	Name string `json:"name"`
 	// MIME type of the file. determined by client.

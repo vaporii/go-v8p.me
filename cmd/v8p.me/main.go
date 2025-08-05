@@ -24,12 +24,6 @@ func main() {
 
 	conf := config.LoadConfig()
 
-	db, err := sql.Open("sqlite3", conf.SQLitePath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
-
 	logger.Debug("starting database migration...")
 	m, err := migrate.New(
 		"file://internal/migrations",
@@ -45,6 +39,12 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+
+	db, err := sql.Open("sqlite3", conf.SQLitePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
 
 	r := chi.NewRouter()
 

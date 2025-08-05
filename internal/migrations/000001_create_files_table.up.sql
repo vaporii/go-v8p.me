@@ -9,5 +9,5 @@ CREATE TABLE files (
     expires TIMESTAMP,
     display_as TEXT NOT NULL,
     highlighting_language TEXT,
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
