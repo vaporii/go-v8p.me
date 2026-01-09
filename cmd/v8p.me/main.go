@@ -26,7 +26,7 @@ func main() {
 
 	logger.Debug("starting database migration...")
 	m, err := migrate.New(
-		"file://internal/migrations",
+		"file://migrations",
 		"sqlite3://"+conf.SQLitePath,
 	)
 	if err != nil {
